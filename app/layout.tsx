@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 
-const monserrat = Montserrat({
-  variable: "--font-montserrat",
+const monserrat = Poppins({
+  variable: "--font-poppins",
+  weight: "400", // Adjust the weight as needed
 });
 
 
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${monserrat.variable} bg-gray-50` }
+        className={`${monserrat.variable} bg-gray-50 h-screen light`}
+
       >
         <Header />
         {children}
+
       </body>
     </html>
   );

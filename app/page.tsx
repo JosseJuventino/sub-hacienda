@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center mt-20 p-8 overflow-hidden">
-      <h1 className="text-4xl font-extrabold text-[#006341] mb-16 drop-shadow-md">
+      <h1 className="text-4xl font-bold text-[#019133] mb-16 drop-shadow-md">
         Descarga de Factura Electrónica
       </h1>
       <div className="flex flex-col md:flex-row items-center justify-center gap-12">
