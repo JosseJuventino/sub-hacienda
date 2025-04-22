@@ -1,13 +1,22 @@
 "use client";
 import { Card, CardBody, Form, Tab, Tabs } from "@heroui/react";
 import { UserPlus2 } from "lucide-react";
-import BasicInfo from "../components/form/BasicInfo";
+import BasicInfo from "../../components/form/BasicInfo";
 import { Button } from "@heroui/react";
 import { useState } from "react";
-import CompleteForm from "../components/form/CompleteForm";
+import CompleteForm from "../../components/form/CompleteForm";
+import { FormValues } from "@/types/formValues";
+import { useCustomerForm } from "@/hooks/useCustomerForm";
 
 export default function FormPage() {
-    const [selectedForm, setSelectedForm] = useState("basic");
+    const [selectedForm, setSelectedForm] = useState<"basic" | "full">("basic");
+
+    const handleSubmit = (values: FormValues) => {
+        console.log("Datos enviados:", values);
+        // aquí tu llamada a la API…
+    };
+
+    const formik = useCustomerForm(selectedForm, handleSubmit);
 
     return (
         <Card className="mx-4 md:mx-28 mt-8 p-4 md:p-10">
@@ -26,7 +35,7 @@ export default function FormPage() {
                         <div className="mt-6">
                             <Tabs
                                 selectedKey={selectedForm}
-                                onSelectionChange={(key) => setSelectedForm(key as string)}
+                                onSelectionChange={(k) => setSelectedForm(k as "basic" | "full")}
                                 variant="solid"
                                 color="success"
                                 fullWidth={false}
@@ -39,15 +48,15 @@ export default function FormPage() {
                     </div>
                 </div>
 
-                <Form className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <BasicInfo />
+                <Form className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={formik.handleSubmit}>
+                    <BasicInfo formik={formik} />
 
                     {selectedForm === "full" && (
-                       <CompleteForm />
+                        <CompleteForm formik={formik} />
                     )}
 
                     <div className="md:col-span-2 flex justify-end">
-                        <Button type="submit" variant="solid" className="w-full md:w-auto">
+                        <Button type="submit" variant="solid" color="success" className="w-full text-white md:w-auto">
                             Guardar
                         </Button>
                     </div>

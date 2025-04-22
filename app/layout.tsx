@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 const monserrat = Poppins({
   variable: "--font-poppins",
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${monserrat.variable} bg-gray-50 h-screen light`}
 
